@@ -29,6 +29,8 @@ public class PartitionableArray {
             }
         }
 
+        swap(leftPointer, pivotPosition);
+
         return leftPointer;
     }
 
