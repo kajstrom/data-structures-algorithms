@@ -26,4 +26,19 @@ public class LinkedList<T> {
 
         return null;
     }
+
+    public Integer indexOf(T value) {
+        Node<T> currentNode = first;
+        int currentIdx = 0;
+
+        while (currentNode != null) {
+            if (currentNode.equals(value)) {
+                return currentIdx;
+            }
+
+            currentIdx++;
+        }
+
+        return null;
+    }
 }

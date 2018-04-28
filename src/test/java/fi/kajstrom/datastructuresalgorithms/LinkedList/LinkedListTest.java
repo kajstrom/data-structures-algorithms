@@ -36,4 +36,35 @@ public class LinkedListTest {
         assertNull(list.read(-1));
 
     }
+
+    @Test
+    void testIndexOf_WithExistingValue_ReturnsCorrectValue() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        assertEquals(0, (int)list.indexOf(10));
+        assertEquals(1, (int)list.indexOf(20));
+        assertEquals(2, (int)list.indexOf(30));
+    }
+
+    @Test
+    void testIndexOf_WithNonExistingValue_ReturnsNull() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        assertNull(list.indexOf(40));
+        assertNull(list.indexOf(9));
+    }
 }
