@@ -32,13 +32,30 @@ public class LinkedList<T> {
         int currentIdx = 0;
 
         while (currentNode != null) {
-            if (currentNode.equals(value)) {
+            if (currentNode.getData().equals(value)) {
                 return currentIdx;
             }
 
+            currentNode = currentNode.getNext();
             currentIdx++;
         }
 
         return null;
+    }
+
+    public void insertAt(int index, Node<T> nodeToInsert) {
+        int currentIndex = 0;
+        Node<T> currentNode = first;
+
+        while (currentIndex < index && currentNode != null) {
+            if (currentIndex + 1 == index) {
+                Node<T> currentNext = currentNode.getNext();
+                nodeToInsert.setNext(currentNext);
+                currentNode.setNext(nodeToInsert);
+            }
+
+            currentNode = currentNode.getNext();
+            currentIndex++;
+        }
     }
 }

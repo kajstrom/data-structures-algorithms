@@ -67,4 +67,42 @@ public class LinkedListTest {
         assertNull(list.indexOf(40));
         assertNull(list.indexOf(9));
     }
+
+    @Test
+    void testInsertAt_WithValidIndex_AddsElement() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        list.insertAt(1, new Node<Integer>(15));
+
+        assertEquals(10, (int)list.read(0));
+        assertEquals(15, (int)list.read(1));
+        assertEquals(20, (int)list.read(2));
+        assertEquals(30, (int)list.read(3));
+    }
+
+    @Test
+    void testInsertAt_WithInvalidIndex_DoesNotAddElement() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        list.insertAt(5, new Node<Integer>(40));
+
+        assertEquals(10, (int)list.read(0));
+        assertEquals(20, (int)list.read(1));
+        assertEquals(30, (int)list.read(2));
+        assertNull(list.read(3));
+    }
 }
