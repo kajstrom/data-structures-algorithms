@@ -105,4 +105,74 @@ public class LinkedListTest {
         assertEquals(30, (int)list.read(2));
         assertNull(list.read(3));
     }
+
+    @Test
+    void testDeleteAt_WithValidIndex_DeletesElement() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        list.deleteAt(1);
+
+        assertEquals(10, (int)list.read(0));
+        assertEquals(30, (int)list.read(1));
+    }
+
+    @Test
+    void testDeleteAt_WithFirstIndex_DeletesElement() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        list.deleteAt(0);
+
+        assertEquals(20, (int)list.read(0));
+        assertEquals(30, (int)list.read(1));
+    }
+
+    @Test
+    void testDeleteAt_WithLastIndex_DeletesElement() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        list.deleteAt(2);
+
+        assertEquals(10, (int)list.read(0));
+        assertEquals(20, (int)list.read(1));
+        assertNull(list.read(2));
+    }
+
+    @Test
+    void testDeleteAt_WithInvalidIndex_DoesNotDeleteElements() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        list.deleteAt(3);
+
+        assertEquals(10, (int)list.read(0));
+        assertEquals(20, (int)list.read(1));
+        assertEquals(30, (int)list.read(2));
+    }
 }

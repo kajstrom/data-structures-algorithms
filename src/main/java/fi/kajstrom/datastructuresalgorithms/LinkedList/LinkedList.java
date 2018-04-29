@@ -58,4 +58,25 @@ public class LinkedList<T> {
             currentIndex++;
         }
     }
+
+    public void deleteAt(int index) {
+        int currentIndex = 0;
+
+        if (index == 0) {
+            first = first.getNext();
+        }
+
+        Node<T> currentNode = first;
+
+        while(currentIndex < index && currentNode != null) {
+            if ((index - 1) == currentIndex && currentNode.hasNext()) {
+                Node<T> toDelete = currentNode.getNext();
+                currentNode.setNext(toDelete.getNext());
+                break;
+            }
+
+            currentNode = currentNode.getNext();
+            currentIndex++;
+        }
+    }
 }
