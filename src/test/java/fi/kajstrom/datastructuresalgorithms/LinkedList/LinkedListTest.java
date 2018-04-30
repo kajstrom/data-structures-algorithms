@@ -175,4 +175,22 @@ public class LinkedListTest {
         assertEquals(20, (int)list.read(1));
         assertEquals(30, (int)list.read(2));
     }
+
+    @Test
+    void testMap_WithTimesTwoFunction_AltersListContent() {
+        Node<Integer> node1 = new Node<>(10);
+        Node<Integer> node2 = new Node<>(20);
+        Node<Integer> node3 = new Node<>(30);
+
+        node1.setNext(node2);
+        node2.setNext(node3);
+
+        LinkedList<Integer> list = new LinkedList<>(node1);
+
+        list.map((v) -> v * 2);
+
+        assertEquals(20, (int)list.read(0));
+        assertEquals(40, (int)list.read(1));
+        assertEquals(60, (int)list.read(2));
+    }
 }

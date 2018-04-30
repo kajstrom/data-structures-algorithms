@@ -1,5 +1,7 @@
 package fi.kajstrom.datastructuresalgorithms.LinkedList;
 
+import java.util.function.Function;
+
 public class LinkedList<T> {
     private Node<T> first;
 
@@ -77,6 +79,19 @@ public class LinkedList<T> {
 
             currentNode = currentNode.getNext();
             currentIndex++;
+        }
+    }
+
+    /**
+     * Naive map implementation. It must return the same type as the original list.
+     */
+    public void map(Function<T, T> f) {
+        Node<T> currentNode = first;
+
+        while (currentNode != null) {
+            currentNode.setData(f.apply(currentNode.getData()));
+
+            currentNode = currentNode.getNext();
         }
     }
 }
