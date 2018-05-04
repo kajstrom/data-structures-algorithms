@@ -33,4 +33,40 @@ public class DoublyLinkedListTest {
 
         assertEquals(0, list.length());
     }
+
+    @Test
+    void testRemoveFirst_WhenCalledOnANonEmptyList_ReturnsFirstNodeValueAndRemovesFirst() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.insertAtEnd(1);
+        list.insertAtEnd(2);
+        list.insertAtEnd(3);
+
+        Integer first = list.removeFirst();
+
+        assertEquals(1, first.intValue());
+        assertEquals(2, list.length());
+        assertEquals(2, (int)list.getFirst());
+    }
+
+    @Test
+    void testRemoveFirst_WhenCalledOnAnEmptyList_ReturnsNull() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        assertNull(list.removeFirst());
+    }
+
+    @Test
+    void testRemoveFirst_WhenCalledOnAListOfOneItems_ReturnsValueAndListIsEmptyAfterwards() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.insertAtEnd(10);
+
+        Integer first = list.removeFirst();
+
+        assertEquals(10, first.intValue());
+        assertNull(list.getLast());
+        assertNull(list.getFirst());
+        assertEquals(0, list.length());
+    }
 }

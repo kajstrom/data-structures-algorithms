@@ -18,10 +18,36 @@ public class DoublyLinkedList<T> {
     }
 
     public T getFirst() {
+        if (first == null) {
+            return null;
+        }
+
         return first.getValue();
     }
 
+    public T removeFirst() {
+        if (first == null) {
+            return null;
+        }
+
+        Node<T> removed = first;
+
+        first = null;
+        if (removed.getNext() != null) {
+            first = removed.getNext();
+            first.setPrev(null);
+        } else {
+            last = null;
+        }
+
+        return removed.getValue();
+    }
+
     public T getLast() {
+        if (last == null) {
+            return null;
+        }
+
         return last.getValue();
     }
 
