@@ -49,13 +49,48 @@ public class TreeNode {
         }
     }
 
+    public TreeNode delete(int valueToDelete) {
+        if (valueToDelete < value) {
+            left = left.delete(valueToDelete);
+            return left;
+        } else if (valueToDelete > value) {
+            right = right.delete(valueToDelete);
+        } else if (value == valueToDelete) {
+            if (left == null) {
+                return right;
+            } else if (right == null) {
+                return left;
+            } else {
+                right = lift(right);
+                return this;
+            }
+        }
+
+        //Base case
+        return null;
+    }
+
+    private TreeNode lift(TreeNode child) {
+        if (child.left != null) {
+            child.left = lift(child.left);
+            return child;
+        } else {
+            value = child.value;
+            return child.right;
+        }
+    }
+
     public TreeNode getRight() {
         return right;
     }
 
+    public void setRight(TreeNode node) {right = node;}
+
     public TreeNode getLeft() {
         return left;
     }
+
+    public void setLeft(TreeNode node) {left = node;}
 
     public int getValue() {
         return value;
